@@ -9,7 +9,7 @@
             "cwd": "${workspaceFolder}",
             "target": "localhost:1234",
             "remote": true,
-            "gdbpath": "/home/chris/.cargo/bin/rust-gdb",
+            "gdbpath": "${userHome}/.cargo/bin/rust-gdb",
             "env": {
                 "RUST_GDB": "gdb-multiarch"
             }
