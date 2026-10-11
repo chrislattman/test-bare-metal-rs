@@ -8,9 +8,26 @@ rustflags = [
 runner = [
     "sh",
     "-c",
-    "avrdude -F -V -D -p m2560 -c avrispmkII -P /dev/ttyACM0 -b 115200 -U flash:w:\"$1\":e",
+    "avrdude -F -V -D -p m2560 -c avrispmkII -P \"${DEV:-/dev/ttyACM0}\" -b 115200 -U flash:w:\"$1\":e",
     "--",
 ]
 
 [unstable]
 build-std = ["core"]
+
+[alias]
+# Cargo appends the ELF path to the runner, so -bios goes last.
+# In another shell: telnet localhost 5678
+# Quit qemu: (qemu) quit
+# Quit telnet: Ctrl + ] -> telnet> quit
+qemu = ["run", "--release", "--config", "target.avr-none.runner=['qemu-system-avr','-machine','mega2560','-nographic','-serial','telnet:localhost:5678,server=on,wait=off','-bios']"]
+
+# Debug build; halts and waits for GDB on localhost:1234
+# (replace -s with -gdb tcp:localhost:<PORT> to use a different port).
+# In another shell (replace gdb-multiarch with avr-gdb if using macOS):
+#   RUST_GDB=gdb-multiarch rust-gdb -q ./target/avr-none/debug/test-bare-metal-rs.elf
+#   (gdb) target remote localhost:1234
+#   (gdb) break main
+#   (gdb) continue
+# In another shell: telnet localhost 5678
+qemu-debug = ["run", "--config", "target.avr-none.runner=['qemu-system-avr','-machine','mega2560','-nographic','-serial','telnet:localhost:5678,server=on,wait=off','-S','-s','-bios']"]
