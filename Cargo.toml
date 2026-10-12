@@ -9,8 +9,13 @@ ufmt = "0.2.0"
 
 [profile.dev]
 panic = "abort"
-lto = true
+lto = false
 opt-level = "s"
+
+# Leave our own code unoptimized so every source line keeps its own
+# instructions (breakpoints land where they're set); dependencies stay at "s".
+[profile.dev.package.test-bare-metal-rs]
+opt-level = 0
 
 [profile.release]
 panic = "abort"

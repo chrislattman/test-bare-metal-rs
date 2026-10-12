@@ -3,7 +3,10 @@ target = "avr-none"
 
 [target.avr-none]
 rustflags = [
-    "-C", "target-cpu=atmega2560"
+    "-C", "target-cpu=atmega2560",
+    # Drop file/line/column from panic locations. AVR keeps constant data in
+    # RAM, and unoptimized builds otherwise overflow the 8 KiB of SRAM.
+    "-Zlocation-detail=none",
 ]
 runner = [
     "sh",

@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="QEMU Debug" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="test-bare-metal-rs" TARGET_NAME="QEMU" CONFIG_NAME="QEMU" RUN_PATH="$PROJECT_DIR$/target/avr-none/debug/test-bare-metal-rs.elf">
+    <method v="2" />
+  </configuration>
+</component>

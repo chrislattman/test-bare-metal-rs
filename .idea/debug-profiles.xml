@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Debug Profiles">
+    <debug-profiles>
+      <debug-profile>
+        <option name="id" value="819afa4a-73bb-4783-afbe-d00b172f6d6e" />
+        <option name="type" value="generic-gdbserver" />
+        <option name="name" value="GDB Server" />
+        <settings>
+          <device>
+            <option name="consoleEnabled" value="false" />
+          </device>
+          <gdb>
+            <option name="env">
+              <map>
+                <entry key="RUST_GDB" value="gdb-multiarch" />
+              </map>
+            </option>
+            <option name="executable" value="$PROJECT_DIR$/../.cargo/bin/rust-gdb" />
+            <option name="gdbRemoteString" value="localhost:1234" />
+            <option name="persistentSession" value="false" />
+          </gdb>
+          <server>
+            <option name="enabled" value="false" />
+          </server>
+        </settings>
+      </debug-profile>
+    </debug-profiles>
+  </component>
+</project>
