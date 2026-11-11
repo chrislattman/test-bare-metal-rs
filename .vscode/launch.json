@@ -13,6 +13,18 @@
             "env": {
                 "RUST_GDB": "gdb-multiarch"
             }
+        },
+        {
+            "name": "Rust: Remote Attach (cppdbg)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/avr-none/debug/test-bare-metal-rs.elf",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${userHome}/.cargo/bin/rust-gdb",
+            "miDebuggerServerAddress": "localhost:1234"
         }
     ]
 }

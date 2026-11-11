@@ -13,3 +13,5 @@ To run the example:
 - `cargo qemu-debug`: run the debug build in QEMU, halted and waiting for GDB on `localhost:1234`
 
 See the comments in `.cargo/config.toml` for how to connect to QEMU and GDB.
+
+The `.vscode/launch.json` file has two configurations that attach to `cargo qemu-debug` on `localhost:1234`: `Rust: Remote Attach` uses the Native Debug extension (`type: gdb`), and `Rust: Remote Attach (cppdbg)` uses the Microsoft C/C++ extension (`type: cppdbg`). The `cppdbg` configuration's `environment` field only applies to the debugged program, not to GDB, so it can't pass `RUST_GDB` to `rust-gdb`. To use the `cppdbg` configuration, start VS Code with `RUST_GDB=gdb-multiarch code .`
