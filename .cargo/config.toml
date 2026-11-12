@@ -28,9 +28,10 @@ qemu = ["run", "--release", "--config", "target.avr-none.runner=['qemu-system-av
 # Debug build; halts and waits for GDB on localhost:1234
 # (replace -s with -gdb tcp:localhost:<PORT> to use a different port).
 # In another shell (replace gdb-multiarch with avr-gdb if using macOS):
-#   RUST_GDB=gdb-multiarch rust-gdb -q ./target/avr-none/debug/test-bare-metal-rs.elf
+#   gdb-multiarch -q ./target/avr-none/debug/test-bare-metal-rs.elf
 #   (gdb) target remote localhost:1234
-#   (gdb) break main
+#   (gdb) break main.rs:12
+#   (break by line: #[arduino_hal::entry] renames main, so `break main` never hits)
 #   (gdb) continue
 # In another shell: telnet localhost 5678
 qemu-debug = ["run", "--config", "target.avr-none.runner=['qemu-system-avr','-machine','mega2560','-nographic','-serial','telnet:localhost:5678,server=on,wait=off','-S','-s','-bios']"]

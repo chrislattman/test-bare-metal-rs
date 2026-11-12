@@ -14,4 +14,4 @@ To run the example:
 
 See the comments in `.cargo/config.toml` for how to connect to QEMU and GDB.
 
-The `.vscode/launch.json` file has two configurations that attach to `cargo qemu-debug` on `localhost:1234`: `Rust: Remote Attach` uses the Native Debug extension (`type: gdb`), and `Rust: Remote Attach (cppdbg)` uses the Microsoft C/C++ extension (`type: cppdbg`). The `cppdbg` configuration's `environment` field only applies to the debugged program, not to GDB, so it can't pass `RUST_GDB` to `rust-gdb`. To use the `cppdbg` configuration, start VS Code with `RUST_GDB=gdb-multiarch code .`
+The `Rust: Remote Attach` configuration in `.vscode/launch.json` uses the Microsoft C/C++ extension (`type: cppdbg`) to attach to `cargo qemu-debug` on `localhost:1234`. It runs `gdb-multiarch` directly rather than `rust-gdb`: `rust-gdb` only adds Rust's pretty-printers, which GDB loads through a `.debug_gdb_scripts` section that bare-metal Rust binaries don't have, and GDB already understands Rust code on its own. Set breakpoints by line (e.g. `main.rs:12`), since `#[arduino_hal::entry]` renames `main`.
